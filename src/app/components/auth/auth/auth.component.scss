@@ -119,3 +119,7 @@
     row-gap: 15px;
   }
 }
+.disabled {
+  background-color: rgb(101, 96, 126) !important;
+  cursor: not-allowed !important;
+}

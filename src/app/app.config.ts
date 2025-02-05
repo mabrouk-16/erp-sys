@@ -5,6 +5,8 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideAnalytics, getAnalytics } from '@angular/fire/analytics';
 import { routes } from './app.routes';
 import { environment } from '../environment';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -12,5 +14,7 @@ export const appConfig: ApplicationConfig = {
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),
     provideAnalytics(() => getAnalytics()),
+    provideFirestore(()=>getFirestore()),
+    provideAnimationsAsync('noop'),
   ],
 };
