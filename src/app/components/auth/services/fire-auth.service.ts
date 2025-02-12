@@ -2,9 +2,11 @@ import { inject, Injectable } from '@angular/core';
 import { from, Observable } from 'rxjs';
 import {
   Auth,
+  authState,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  user,
   UserCredential,
 } from '@angular/fire/auth';
 import { UserService } from './user.service';
@@ -17,7 +19,9 @@ import { logBody, regBody, UserRoles } from '../../../models/User';
 export class FireAuthService {
   private angularAuth = inject(Auth);
   private userService = inject(UserService);
-  private snack = inject(SnackService);
+
+  user$ = user(this.angularAuth);
+  currentUser$ = authState(this.angularAuth);
 
   registerWithFB(body: regBody): Observable<void> {
     const promise = createUserWithEmailAndPassword(
@@ -46,7 +50,7 @@ export class FireAuthService {
     );
   }
   logout(): Observable<void> {
-    const promise = signOut(this.angularAuth);
-    return from(promise);
+    this.userService.logout()
+    return from(signOut(this.angularAuth));
   }
 }

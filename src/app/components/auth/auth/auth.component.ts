@@ -3,6 +3,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { FireAuthService } from '../services/fire-auth.service';
 import { Router } from '@angular/router';
 import { SnackService } from '../../../services/snack.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-auth',
@@ -15,6 +16,7 @@ export class AuthComponent {
   private auth = inject(FireAuthService);
   private router = inject(Router);
   private snack = inject(SnackService);
+  private userService = inject(UserService);
 
   signUp = signal(false);
 
@@ -29,7 +31,10 @@ export class AuthComponent {
             password: regForm.value.password,
           })
           .subscribe({
-            next: () => {
+            next: (res) => {
+              // console.log(res)
+              // this.userService.saveUser();
+
               this.router.navigate(['/home']).then(() => {
                 this.snack.success('User Successfully LoggedIn');
               });
