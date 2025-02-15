@@ -15,6 +15,6 @@ export const appConfig: ApplicationConfig = {
     provideAuth(() => getAuth()),
     provideAnalytics(() => getAnalytics()),
     provideFirestore(()=>getFirestore()),
-    provideAnimationsAsync('noop'),
+    provideAnimationsAsync('noop'), provideAnimationsAsync(),
   ],
 };
