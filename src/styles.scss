@@ -42,5 +42,14 @@ body {
   --bs-footer-color: #74788d;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.cursor-pointer {
+  cursor: pointer !important;
+}

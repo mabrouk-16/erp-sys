@@ -1,4 +1,14 @@
 <div id="layout-wrapper">
-  <app-top-bar></app-top-bar>
-  <app-left-side-bar></app-left-side-bar>
+  <app-top-bar
+    (toggleOutput)="toggleSideBar.set($event)"
+    [toggleSideBar]="toggleSideBar()"
+  ></app-top-bar>
+  <app-left-side-bar [toggleSideBar]="toggleSideBar()"></app-left-side-bar>
+  <div
+    class="main-content mt-5 pt-5"
+    style="height: calc(100vh-70)"
+    [style.margin-left.px]="toggleSideBar() ? '270' : '20'"
+  >
+    <router-outlet></router-outlet>
+  </div>
 </div>

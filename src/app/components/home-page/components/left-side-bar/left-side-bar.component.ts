@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-left-side-bar',
   standalone: true,
-  imports: [],
+  imports: [MatIconModule],
   templateUrl: './left-side-bar.component.html',
-  styleUrl: './left-side-bar.component.scss'
+  styleUrl: './left-side-bar.component.scss',
 })
 export class LeftSideBarComponent {
-
+  toggleSideBar = input(true);
 }

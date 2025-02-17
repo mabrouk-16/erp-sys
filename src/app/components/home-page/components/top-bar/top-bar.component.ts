@@ -1,4 +1,4 @@
-import { Component, inject, ViewEncapsulation } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { UserService } from '../../../auth/services/user.service';
 import { FireAuthService } from '../../../auth/services/fire-auth.service';
@@ -16,6 +16,8 @@ export class TopBarComponent {
   userService = inject(UserService);
   fireAuth = inject(FireAuthService);
   router = inject(Router);
+  toggleOutput = output<boolean>();
+  toggleSideBar = input(true);
 
   logOut() {
     this.fireAuth.logout().subscribe(() => {

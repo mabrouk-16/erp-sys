@@ -28,6 +28,7 @@
         type="button"
         class="btn btn-sm px-3 font-size-16 header-item"
         id="vertical-menu-btn"
+        (click)="toggleOutput.emit(!toggleSideBar())"
       >
         <!-- <i class="fa fa-fw fa-bars"></i> -->
         <mat-icon>menu</mat-icon>
@@ -405,7 +406,7 @@
             src="assets/images/users/avatar-1.jpg"
             alt="Header Avatar"
           />
-          <span class="d-none d-xl-inline-block ms-1 fw-medium">
+          <span class="d-none d-md-inline-block ms-1 fw-medium">
             {{ userService.user()?.userName }}</span
           >
           <!-- <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i> -->

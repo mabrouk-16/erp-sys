@@ -506,7 +506,7 @@ body[data-layout=horizontal] .footer {
 }
 
 .main-content {
-    margin-left: 250px;
+    /* margin-left: 250px; */
     overflow: hidden
 }
 
@@ -659,11 +659,11 @@ body[data-layout=horizontal] .footer {
 
 @media (max-width:992px) {
     .vertical-menu {
-        display: none
+        /* display: none */
     }
 
     .main-content {
-        margin-left: 0 !important
+        /* margin-left: 0 !important */
     }
 
     body.sidebar-enable .vertical-menu {
@@ -676,7 +676,7 @@ body[data-sidebar-size=sm] {
 }
 
 body[data-sidebar-size=sm] .main-content {
-    margin-left: 70px
+    /* margin-left: 70px */
 }
 
 body[data-sidebar-size=sm] .navbar-brand-box {
@@ -990,7 +990,7 @@ body[data-sidebar=dark][data-sidebar-size=md] #sidebar-menu ul li.menu-title {
 }
 
 body[data-layout=horizontal] .main-content {
-    margin-left: 0 !important
+    /* margin-left: 0 !important */
 }
 
 body[data-sidebar-size=md] .navbar-brand-box {
@@ -1015,7 +1015,7 @@ body[data-sidebar-size=md] .vertical-menu .sidebar-alert {
 }
 
 body[data-sidebar-size=md] .main-content {
-    margin-left: 160px
+    /* margin-left: 160px */
 }
 
 body[data-sidebar-size=md] .footer {
@@ -1042,7 +1042,7 @@ body[data-sidebar-size=md] #sidebar-menu ul li ul.sub-menu li ul.sub-menu li a {
 }
 
 body[data-sidebar-size=md][data-sidebar-size=sm] .main-content {
-    margin-left: 70px
+    /* margin-left: 70px */
 }
 
 body[data-sidebar-size=md][data-sidebar-size=sm] .vertical-menu #sidebar-menu {
@@ -2581,7 +2581,7 @@ body[data-layout=horizontal][data-layout-size=boxed] .navbar-header {
     .right-bar,
     body {
         padding: 0;
-        margin: 0
+        /* margin: 0 */
     }
 
     .card {
