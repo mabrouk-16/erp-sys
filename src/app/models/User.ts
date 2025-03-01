@@ -10,6 +10,8 @@ export interface User {
   address?: string | null;
   gender?: string | null;
   role?: UserRoles;
+  department?: string | null;
+  createdAt?: string | null;
 }
 export enum UserRoles {
   user = 'user',
@@ -24,6 +26,8 @@ export interface regBody {
   phone?: string | null;
   address?: string | null;
   gender?: string | null;
+  department?: string | null;
+  title?: string | null;
 }
 export interface logBody {
   email: string;

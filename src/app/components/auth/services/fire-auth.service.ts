@@ -40,6 +40,9 @@ export class FireAuthService {
         gender: body.gender,
         address: body.address,
         role: UserRoles.user,
+        department: body.department,
+        title: body.title,
+        createdAt: new Date().toISOString(),
       });
     });
     return from(promise);

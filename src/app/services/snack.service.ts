@@ -4,15 +4,15 @@ import {
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
 
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class SnackService {
+  private matSnackBar = inject(MatSnackBar);
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
-  constructor(private matSnackBar: MatSnackBar) {}
 
-  success(message: string, duration = 5000) {
+  success(message: string, duration = 3000) {
     this.matSnackBar.open(message, 'X', {
       duration: duration,
       horizontalPosition: this.horizontalPosition,
@@ -21,7 +21,7 @@ export class SnackService {
       politeness: 'assertive',
     });
   }
-  error(message: string, duration = 5000) {
+  error(message: string, duration = 3000) {
     this.matSnackBar.open(message, 'X', {
       duration: duration,
       horizontalPosition: this.horizontalPosition,

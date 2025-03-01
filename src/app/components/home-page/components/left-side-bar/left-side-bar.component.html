@@ -28,7 +28,11 @@
         </li>
         <li>
           <a
-            routerLink="/home/dashboard"
+            [routerLink]="[
+              urlsNames.root,
+              urlsNames.home,
+              urlsNames.department
+            ]"
             class="d-flex align-items-center gap-2 cursor-pointer"
           >
             <mat-icon data-feather="home">group</mat-icon>

@@ -4,6 +4,7 @@ import { FireAuthService } from '../services/fire-auth.service';
 import { Router } from '@angular/router';
 import { SnackService } from '../../../services/snack.service';
 import { UserService } from '../services/user.service';
+import { UrlsNames } from '../../../models/shared';
 
 @Component({
   selector: 'app-auth',
@@ -47,13 +48,12 @@ export class AuthComponent {
     });
   }
   login(loginForm: NgForm) {
-    console.log(loginForm.value);
-    console.log(loginForm.value);
     this.auth.loginWithFB(loginForm.value).subscribe({
-      next: () => {
-        this.router.navigate(['/home']).then(() => {
-          this.snack.success('User Successfully LoggedIn');
-        });
+      next: (res) => {
+        this.router.navigateByUrl(
+          UrlsNames.root + UrlsNames.home + '/' + UrlsNames.dashboard
+        );
+        this.snack.success('User Successfully LoggedIn');
       },
 
       error: (error) => {
