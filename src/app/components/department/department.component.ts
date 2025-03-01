@@ -25,17 +25,16 @@ export interface UserData {
 }
 
 @Component({
-  selector: 'app-department',
-  standalone: true,
-  imports: [
-    MatFormFieldModule,
-    MatInputModule,
-    MatTableModule,
-    MatSortModule,
-    MatPaginatorModule,
-  ],
-  templateUrl: './department.component.html',
-  styleUrl: './department.component.scss',
+    selector: 'app-department',
+    imports: [
+        MatFormFieldModule,
+        MatInputModule,
+        MatTableModule,
+        MatSortModule,
+        MatPaginatorModule,
+    ],
+    templateUrl: './department.component.html',
+    styleUrl: './department.component.scss'
 })
 export class DepartmentComponent {
   usersService = inject(UsersService);

@@ -5,12 +5,10 @@ import { FireAuthService } from '../../../auth/services/fire-auth.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-top-bar',
-  standalone: true,
-  imports: [MatIconModule],
-  templateUrl: './top-bar.component.html',
-  styleUrl: './top-bar.component.scss',
-  // encapsulation:ViewEncapsulation.Emulated
+    selector: 'app-top-bar',
+    imports: [MatIconModule],
+    templateUrl: './top-bar.component.html',
+    styleUrl: './top-bar.component.scss'
 })
 export class TopBarComponent {
   userService = inject(UserService);

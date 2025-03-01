@@ -7,11 +7,10 @@ import { UserService } from '../services/user.service';
 import { UrlsNames } from '../../../models/shared';
 
 @Component({
-  selector: 'app-auth',
-  standalone: true,
-  imports: [FormsModule],
-  templateUrl: './auth.component.html',
-  styleUrl: './auth.component.scss',
+    selector: 'app-auth',
+    imports: [FormsModule],
+    templateUrl: './auth.component.html',
+    styleUrl: './auth.component.scss'
 })
 export class AuthComponent {
   private auth = inject(FireAuthService);
