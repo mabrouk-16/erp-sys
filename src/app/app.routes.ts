@@ -5,6 +5,7 @@ import { authGuard } from './services/auth.guard';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UrlsNames } from './models/shared';
 import { DepartmentComponent } from './components/department/department.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: `${UrlsNames.home}`, pathMatch: 'full' },
@@ -25,6 +26,10 @@ export const routes: Routes = [
       {
         path: `${UrlsNames.department}`,
         loadComponent: () => DepartmentComponent,
+      },
+      {
+        path: `${UrlsNames.profile}`,
+        loadComponent: () => UserProfileComponent,
       },
     ],
   },
