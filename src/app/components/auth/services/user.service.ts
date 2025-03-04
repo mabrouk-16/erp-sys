@@ -7,14 +7,20 @@ import {
   setDoc,
   updateDoc,
 } from '@angular/fire/firestore';
-import { from } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { User } from '../../../models/User';
+import { HttpClient } from '@angular/common/http';
+import { SnackService } from '../../../services/snack.service';
+import { environment } from '../../../../environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
   private firestore = inject(Firestore);
+  private http = inject(HttpClient);
+  private snack = inject(SnackService);
+
   // private authService = inject(AuthApiService);
   user: WritableSignal<User | null | undefined> = signal(null);
   usersCollections!: CollectionReference;
@@ -29,6 +35,7 @@ export class UserService {
       // console.log(res.data());
       this.saveUser(res.data());
       this.user.set({ ...res.data() });
+      console.log(this.user());
     });
   }
   getUserProfile(id: string) {
@@ -69,4 +76,33 @@ export class UserService {
   //     return docData(ref) as Observable<UserProfile>
   //   }))
   // }
+
+  // ==================================== profile settings==============================================
+
+  uploadImageToCloud(data: any): Observable<any> {
+    return this.http.post(
+      `https://api.cloudinary.com/v1_1/${environment.cloudinaryConfig.CloudName}/image/upload`,
+      data
+    );
+  }
+
+  updateProfileImageByFB(imgUrl: string) {
+    this.updateUserProfile(this.user()?.userId || '', {
+      ...this.user(),
+      picture: imgUrl,
+    }).subscribe(() => {
+      this.setUserFromFB(this.user()?.userId || '');
+      this.snack.success('Your Image Successfully Updated');
+    });
+  }
+
+  updateProfileInfo(body: any) {
+    this.updateUserProfile(this.user()?.userId || '', {
+      ...this.user(),
+      ...body,
+    }).subscribe(() => {
+      this.setUserFromFB(this.user()?.userId || '');
+      this.snack.success('Your Information Successfully Updated');
+    });
+  }
 }

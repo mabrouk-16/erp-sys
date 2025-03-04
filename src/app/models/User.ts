@@ -12,6 +12,7 @@ export interface User {
   role?: UserRoles;
   department?: string | null;
   createdAt?: string | null;
+  links?: UserLinks;
 }
 export enum UserRoles {
   user = 'user',
@@ -32,4 +33,11 @@ export interface regBody {
 export interface logBody {
   email: string;
   password: string;
+}
+export interface UserLinks {
+  linkedIn?: string | null;
+  facebook?: string | null;
+  twitter?: string | null;
+  github?: string | null;
+  website?: string | null;
 }

@@ -403,7 +403,10 @@
         >
           <img
             class="rounded-circle header-profile-user"
-            src="https://bootdey.com/img/Content/avatar/avatar7.png"
+            [src]="
+              userService.user()?.picture ||
+              'https://bootdey.com/img/Content/avatar/avatar7.png'
+            "
             alt="Header Avatar"
           />
           <span class="d-none d-md-inline-block ms-1 fw-medium">
