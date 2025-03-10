@@ -5,12 +5,13 @@ import { Router } from '@angular/router';
 import { SnackService } from '../../../services/snack.service';
 import { UserService } from '../services/user.service';
 import { UrlsNames } from '../../../models/shared';
+import { Departments } from '../../../models/User';
 
 @Component({
-    selector: 'app-auth',
-    imports: [FormsModule],
-    templateUrl: './auth.component.html',
-    styleUrl: './auth.component.scss'
+  selector: 'app-auth',
+  imports: [FormsModule],
+  templateUrl: './auth.component.html',
+  styleUrl: './auth.component.scss',
 })
 export class AuthComponent {
   private auth = inject(FireAuthService);
@@ -19,6 +20,8 @@ export class AuthComponent {
   private userService = inject(UserService);
 
   signUp = signal(false);
+
+  userDepartment = Departments;
 
   register(regForm: NgForm) {
     console.log(regForm.value);
@@ -35,24 +38,28 @@ export class AuthComponent {
               // console.log(res)
               // this.userService.saveUser();
 
-              this.router.navigate(['/home']).then(() => {
-                this.snack.success('User Successfully LoggedIn');
-              });
+              this.router
+                .navigate([UrlsNames.root, UrlsNames.home, UrlsNames.dashboard])
+                .then(() => {
+                  this.snack.success('User Successfully LoggedIn');
+                });
             },
           });
       },
       error: (err) => {
-        alert(err);
+        this.snack.error(err.message);
       },
     });
   }
+
   login(loginForm: NgForm) {
     this.auth.loginWithFB(loginForm.value).subscribe({
       next: (res) => {
-        this.router.navigateByUrl(
-          UrlsNames.root + UrlsNames.home + '/' + UrlsNames.dashboard
-        );
-        this.snack.success('User Successfully LoggedIn');
+        this.router
+          .navigate([UrlsNames.root, UrlsNames.home, UrlsNames.dashboard])
+          .then(() => {
+            this.snack.success('User Successfully LoggedIn');
+          });
       },
 
       error: (error) => {

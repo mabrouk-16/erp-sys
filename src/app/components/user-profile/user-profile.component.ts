@@ -4,6 +4,7 @@ import { environment } from '../../../environment';
 import { ProfileService } from '../../services/profile.service';
 import { FormsModule } from '@angular/forms';
 import { user } from '@angular/fire/auth';
+import { Departments } from '../../models/User';
 
 @Component({
   selector: 'app-user-profile',
@@ -18,6 +19,7 @@ export class UserProfileComponent {
   toggleEdit = signal(false);
   toggleLinkEdit = signal(false);
   title = signal(this.userService.user()?.title || '');
+  department = signal(this.userService.user()?.department || '');
   userName = signal(this.userService.user()?.userName || '');
   phone = signal(this.userService.user()?.phone || '');
   address = signal(this.userService.user()?.address || '');
@@ -31,6 +33,7 @@ export class UserProfileComponent {
       website: '',
     }
   );
+  userDepartment = Departments;
   changeImgFile(event: any) {
     // this.imgLoading.set(true);
     const data = new FormData();
@@ -56,13 +59,14 @@ export class UserProfileComponent {
       phone: this.phone(),
       address: this.address(),
       birthDate: this.birthDate(),
+      department: this.department(),
     });
     // setTimeout(() => {
     this.toggleEdit.set(false);
     // }, 450);
   }
   updateUserLinks() {
-    this.profileService.updateProfileInfo({links:this.userLinks()});
+    this.profileService.updateProfileInfo({ links: this.userLinks() });
     // setTimeout(() => {
     this.toggleLinkEdit.set(false);
     // }, 450);

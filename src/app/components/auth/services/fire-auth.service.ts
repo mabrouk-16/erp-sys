@@ -11,7 +11,7 @@ import {
 } from '@angular/fire/auth';
 import { UserService } from './user.service';
 import { SnackService } from '../../../services/snack.service';
-import { logBody, regBody, UserRoles } from '../../../models/User';
+import { Departments, logBody, regBody, UserRoles } from '../../../models/User';
 
 @Injectable({
   providedIn: 'root',
@@ -53,7 +53,7 @@ export class FireAuthService {
     );
   }
   logout(): Observable<void> {
-    this.userService.logout()
+    this.userService.logout();
     return from(signOut(this.angularAuth));
   }
 }

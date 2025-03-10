@@ -10,7 +10,7 @@ export interface User {
   address?: string | null;
   gender?: string | null;
   role?: UserRoles;
-  department?: string | null;
+  department?: Departments ;
   createdAt?: string | null;
   links?: UserLinks;
 }
@@ -18,6 +18,11 @@ export enum UserRoles {
   user = 'user',
   admin = 'admin',
   super_admin = 'super_admin',
+}
+export enum Departments {
+  Cyber = 'Cyber',
+  Developers = 'Developers',
+  Marketing = 'Marketing',
 }
 export interface regBody {
   userName: string;
@@ -27,7 +32,7 @@ export interface regBody {
   phone?: string | null;
   address?: string | null;
   gender?: string | null;
-  department?: string | null;
+  department?: Departments;
   title?: string | null;
 }
 export interface logBody {

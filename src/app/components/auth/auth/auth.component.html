@@ -49,15 +49,25 @@
           />
         </div>
         <div class="input-box">
-          <label>department</label>
-          <input
+          <label>Department</label>
+          <!-- <input
             name="department"
-            ngModel
             type="text"
-            placeholder="your department"
             required
             minlength="4"
-          />
+            /> -->
+            <select
+            name="department"
+            ngModel
+            placeholder="your department"
+            class="form-select select-box"
+            aria-label="Default select example"
+          >
+            <!-- <option selected>select your department</option> -->
+            <option [value]="userDepartment.Developers">Developers</option>
+            <option [value]="userDepartment.Cyber">Cyber</option>
+            <option [value]="userDepartment.Marketing">Marketing</option>
+          </select>
         </div>
       </div>
       <div class="column">
@@ -124,8 +134,8 @@
         >already have an account? LogIn</a
       >
       {{ registerForm.invalid }}
+      <!-- [disabled]="registerForm.invalid" -->
       <button
-        [disabled]="registerForm.invalid"
         [class]="registerForm.invalid ? 'disabled' : ''"
         (click)="register(registerForm)"
       >

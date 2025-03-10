@@ -365,6 +365,26 @@
             </div>
             <hr />
             <div class="row">
+              <div class="col-sm-4"><h4 class="mb-0">Department</h4></div>
+              <div class="col-sm-8 text-secondary">
+                @if (toggleEdit()) {
+                <select
+                  placeholder="your department"
+                  class="form-control"
+                  name="department"
+                  [(ngModel)]="department"
+                >
+                  <!-- <option selected>select your department</option> -->
+                  <option [value]="userDepartment.Developers">Developers</option>
+                  <option [value]="userDepartment.Cyber">Cyber</option>
+                  <option [value]="userDepartment.Marketing">Marketing</option>
+                </select>
+
+                }@else { {{ userService.user()?.department }}}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
               <div class="col-sm-4"><h4 class="mb-0">Phone</h4></div>
               <div class="col-sm-8 text-secondary">
                 @if (toggleEdit()) {
