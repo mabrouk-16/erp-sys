@@ -19,6 +19,19 @@
         </li>
         <li>
           <a
+             [routerLink]="[
+              urlsNames.root,
+              urlsNames.home,
+              urlsNames.calendar
+            ]"
+            class="d-flex align-items-center gap-2 cursor-pointer"
+          >
+            <mat-icon data-feather="home">calendar_month</mat-icon>
+            <span data-key="t-dashboard">Calendar</span>
+          </a>
+        </li>
+        <li>
+          <a
             routerLink="/home/dashboard"
             class="d-flex align-items-center gap-2 cursor-pointer"
           >

@@ -6,6 +6,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UrlsNames } from './models/shared';
 import { DepartmentComponent } from './components/department/department.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: `${UrlsNames.home}`, pathMatch: 'full' },
@@ -30,6 +31,10 @@ export const routes: Routes = [
       {
         path: `${UrlsNames.profile}`,
         loadComponent: () => UserProfileComponent,
+      },
+      {
+        path: `${UrlsNames.calendar}`,
+        loadComponent: () => CalendarComponent,
       },
     ],
   },

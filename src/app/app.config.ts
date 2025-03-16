@@ -8,6 +8,8 @@ import { environment } from '../environment';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { provideHttpClient } from '@angular/common/http';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,7 +18,15 @@ export const appConfig: ApplicationConfig = {
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),
     provideAnalytics(() => getAnalytics()),
-    provideFirestore(()=>getFirestore()),
-    provideAnimationsAsync('noop'), provideAnimationsAsync(),
+    provideFirestore(() => getFirestore()),
+    provideAnimationsAsync('noop'),
+    provideAnimationsAsync(),
+    // importProvidersFrom(FlatpickrModule.forRoot()),
+    importProvidersFrom(
+      CalendarModule.forRoot({
+        provide: DateAdapter,
+        useFactory: adapterFactory,
+      })
+    ),
   ],
 };

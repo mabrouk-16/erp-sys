@@ -7,4 +7,5 @@ export enum UrlsNames {
   dashboard = 'dashboard',
   department = 'department',
   profile = 'profile',
+  calendar = 'calendar',
 }
