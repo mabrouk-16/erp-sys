@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, TemplateRef } from '@angular/core';
+import { Component, inject, TemplateRef } from '@angular/core';
 import {
   CalendarDateFormatter,
   CalendarEvent,
@@ -27,7 +27,8 @@ import {
   FlatpickrDirective,
   provideFlatpickrDefaults,
 } from 'angularx-flatpickr';
-
+import { CalendarService } from './services/calendar.service';
+import { SnackService } from '../../services/snack.service';
 
 export const colors: any = {
   red: {
@@ -58,6 +59,8 @@ export const colors: any = {
   styleUrl: './calendar.component.scss',
 })
 export class CalendarComponent {
+  calendarService = inject(CalendarService);
+  snackBar = inject(SnackService);
   // @ViewChild('modalContent', { static: true }) modalContent:
   //   | TemplateRef<any>
   //   | undefined;
@@ -101,7 +104,7 @@ export class CalendarComponent {
       end: addDays(new Date(), 1),
       title: 'A 3 day event',
       color: { ...colors.red },
-      actions: this.actions,
+      // actions: this.actions,
       allDay: true,
       resizable: {
         beforeStart: true,
@@ -111,9 +114,10 @@ export class CalendarComponent {
     },
     {
       start: startOfDay(new Date()),
+      end: addHours(new Date(), 2),
       title: 'An event with no end date',
       color: { ...colors.yellow },
-      actions: this.actions,
+      // actions: this.actions,
     },
     {
       start: subDays(endOfMonth(new Date()), 3),
@@ -127,7 +131,7 @@ export class CalendarComponent {
       end: addHours(new Date(), 2),
       title: 'A draggable and resizable event',
       color: { ...colors.yellow },
-      actions: this.actions,
+      // actions: this.actions,
       resizable: {
         beforeStart: true,
         afterEnd: true,
@@ -138,7 +142,43 @@ export class CalendarComponent {
 
   activeDayIsOpen: boolean = true;
 
-  constructor() {}
+  constructor() {
+    this.getAllEvents();
+  }
+
+  getAllEvents() {
+    this.calendarService.getAllEvents().subscribe((res) => {
+      // console.log(res);
+      res.forEach((doc) => {
+        doc.data();
+        // console.log(doc.data());
+        this.events = [...(doc.data()['events'] as CalendarEvent[])];
+        this.events.forEach((event) => {
+          event.end = new Date(event.end || '');
+          event.start = new Date(event.start || '');
+        });
+        // console.log(this.events);
+        this.refresh.next();
+      });
+    });
+  }
+
+  submit() {
+    const formattedEvents: any[] = [];
+    this.events.forEach((event) => {
+      formattedEvents.push(event);
+    });
+    formattedEvents.forEach((event) => {
+      event.end = new Date(event.end || '').toISOString();
+      event.start = new Date(event.start || '').toISOString();
+    });
+    // console.log(formattedEvents);
+    this.calendarService.updateEvents('1', this.events).subscribe((res) => {
+      // console.log(res);
+      this.getAllEvents();
+      this.snackBar.success('Events Updated Successfully');
+    });
+  }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -206,5 +246,3 @@ export class CalendarComponent {
     this.activeDayIsOpen = false;
   }
 }
-
-
