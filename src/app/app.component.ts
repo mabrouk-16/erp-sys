@@ -4,15 +4,17 @@ import { Auth } from '@angular/fire/auth';
 import { FireAuthService } from './components/auth/services/fire-auth.service';
 import { UserService } from './components/auth/services/user.service';
 import { of } from 'rxjs';
+import { Analytics } from '@angular/fire/analytics';
 
 @Component({
-    selector: 'app-root',
-    imports: [RouterOutlet],
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.scss'
+  selector: 'app-root',
+  imports: [RouterOutlet],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   auth = inject(Auth);
+  analytics = inject(Analytics);
   private FireAuth = inject(FireAuthService);
   public userService = inject(UserService);
   ngOnInit(): void {
