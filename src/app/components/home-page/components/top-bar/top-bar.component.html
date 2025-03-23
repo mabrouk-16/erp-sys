@@ -421,7 +421,12 @@
           <!-- item -->
           <a
             class="dropdown-item"
-            [routerLink]="[urlsNames.root, urlsNames.home, urlsNames.profile]"
+            [routerLink]="[
+              urlsNames.root,
+              urlsNames.home,
+              urlsNames.profile,
+              userService.user()?.userId
+            ]"
             ><i class="mdi mdi mdi-face-man font-size-16 align-middle me-1"></i>
             Profile</a
           >

@@ -4,7 +4,8 @@ import { environment } from '../../../environment';
 import { ProfileService } from '../../services/profile.service';
 import { FormsModule } from '@angular/forms';
 import { user } from '@angular/fire/auth';
-import { Departments } from '../../models/User';
+import { Departments, User } from '../../models/User';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -15,9 +16,12 @@ import { Departments } from '../../models/User';
 export class UserProfileComponent {
   userService = inject(UserService);
   profileService = inject(ProfileService);
+  route = inject(ActivatedRoute);
+  user = signal<User | null | undefined>(null);
 
   toggleEdit = signal(false);
   toggleLinkEdit = signal(false);
+  isMyProfile = signal(true);
   title = signal(this.userService.user()?.title || '');
   department = signal(this.userService.user()?.department || '');
   userName = signal(this.userService.user()?.userName || '');
@@ -34,6 +38,30 @@ export class UserProfileComponent {
     }
   );
   userDepartment = Departments;
+
+  constructor() {
+    this.route.url.subscribe(() => {
+      const id = this.route.snapshot.params['userId'];
+      if (id && id !== this.userService.user()?.userId) {
+        this.getUserById(id);
+      } else {
+        this.user.set({ ...this.userService.user() });
+        this.isMyProfile.set(true);
+      }
+    });
+  }
+
+  getUserById(userId: string) {
+    this.userService
+      .getUserProfile(userId)
+      // .pipe(finalize(() => this.isLoading.set(false)))
+      .subscribe((res) => {
+        this.user.set({ ...res.data() });
+        this.isMyProfile.set(false);
+        console.log(this.user());
+      });
+  }
+
   changeImgFile(event: any) {
     // this.imgLoading.set(true);
     const data = new FormData();

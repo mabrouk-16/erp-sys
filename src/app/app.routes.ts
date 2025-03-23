@@ -29,7 +29,7 @@ export const routes: Routes = [
         loadComponent: () => DepartmentComponent,
       },
       {
-        path: `${UrlsNames.profile}`,
+        path: `${UrlsNames.profile}/:userId`,
         loadComponent: () => UserProfileComponent,
       },
       {

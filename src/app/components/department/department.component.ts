@@ -16,6 +16,11 @@ import { UsersService } from '../../services/users.service';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { SnackService } from '../../services/snack.service';
 import { MatSelectModule } from '@angular/material/select';
+import { RouterLink } from '@angular/router';
+import { UrlsNames } from '../../models/shared';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatMenuModule } from '@angular/material/menu';
 
 export interface UserData {
   userId: string;
@@ -40,6 +45,10 @@ export interface UserData {
     MatSortModule,
     MatPaginatorModule,
     MatSelectModule,
+    RouterLink,
+    MatIconModule,
+    MatButtonModule,
+    MatMenuModule,
   ],
   templateUrl: './department.component.html',
   styleUrl: './department.component.scss',
@@ -51,6 +60,7 @@ export class DepartmentComponent {
 
   department = signal('');
   userDepartment = Departments;
+  urlsNames = UrlsNames;
 
   displayedColumns: string[] = [
     'userId',
@@ -58,6 +68,7 @@ export class DepartmentComponent {
     'title',
     'role',
     'gender',
+    'details',
   ];
   dataSource!: MatTableDataSource<User>;
 
@@ -66,7 +77,7 @@ export class DepartmentComponent {
 
   constructor() {
     // Create 100 users
-    const users = usersList;
+    // const users = usersList;
     // Assign the data to the data source for the table to render
     // this.dataSource = new MatTableDataSource(users);
     // console.log(this.dataSource);

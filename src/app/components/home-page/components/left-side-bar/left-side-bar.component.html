@@ -19,11 +19,7 @@
         </li>
         <li>
           <a
-             [routerLink]="[
-              urlsNames.root,
-              urlsNames.home,
-              urlsNames.calendar
-            ]"
+            [routerLink]="[urlsNames.root, urlsNames.home, urlsNames.calendar]"
             class="d-flex align-items-center gap-2 cursor-pointer"
           >
             <mat-icon data-feather="home">calendar_month</mat-icon>
@@ -54,7 +50,12 @@
         </li>
         <li>
           <a
-            [routerLink]="[urlsNames.root, urlsNames.home, urlsNames.profile]"
+            [routerLink]="[
+              urlsNames.root,
+              urlsNames.home,
+              urlsNames.profile,
+              userService.user()?.userId
+            ]"
             class="d-flex align-items-center gap-2 cursor-pointer"
           >
             <mat-icon data-feather="home">person</mat-icon>

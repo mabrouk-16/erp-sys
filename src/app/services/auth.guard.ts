@@ -10,10 +10,11 @@ export class authGuard {
   private router = inject(Router);
   constructor() {}
   canActivate(): boolean {
-    if (!this.userService.getUser() || !this.userService.user()) {
+    if (this.userService.getUser() || this.userService.user()) {
+      return true;
+    } else {
       this.router.navigate(['/', 'auth']);
       return false;
     }
-    return true;
   }
 }
